@@ -13,14 +13,14 @@ class TaskTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('App\Project');
+        $faker = Faker::create('App\Task');
 
 
         for($i = 0; $i <= 25; $i++){
             DB::table('tasks')->insert([
                 'title' => $faker->sentence,
                 'description' => $faker->paragraph(5),
-                'project_id' => $faker->numberBetween(1, 10),
+                'project_id' => $faker->numberBetween(1, 5),
                 'status' => $faker->randomElement($array = array ('New','In progress','Done')),
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),

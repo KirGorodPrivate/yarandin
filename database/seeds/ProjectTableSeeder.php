@@ -20,6 +20,7 @@ class ProjectTableSeeder extends Seeder
             DB::table('projects')->insert([
                 'title' => $faker->sentence,
                 'description' => $faker->paragraph(5),
+                'user_id' => $faker->numberBetween(1, 4),
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ]);
