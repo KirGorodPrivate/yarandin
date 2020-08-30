@@ -94,6 +94,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          @guest
+
+          @else
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="fas fa-project-diagram"></i>
@@ -101,9 +104,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 My Projects
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
+            </a>           
             <ul class="nav nav-treeview">
-              @foreach(\App\Project::all()->where('user_id', 1) as $project)
+              @foreach(\App\Project::all()->where('user_id', Auth::user()->id) as $project)
                 <li class="nav-item">
                   <a href="{{ route('project.show', $project->id) }}" class="nav-link active">
                     @if(strlen($project->title) >= 28)
@@ -115,7 +118,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </li>
               @endforeach
             </ul>
+            
+            
           </li>
+          @endguest
         </ul>
       </nav>
 
